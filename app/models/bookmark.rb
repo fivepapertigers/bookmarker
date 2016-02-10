@@ -4,12 +4,15 @@ class Bookmark < ActiveRecord::Base
 
   validates :name, presence: true
   validates :path, presence: true
-  validates_associated :user
+  validates_presence_of :user
 
   private
 
   def ensure_tag_user(tag)
-    raise if tag.user_id && tag.user_id != user_id
+    raise TagUserMismatch if tag.user_id && tag.user_id != user_id
     tag.user_id = user_id
+  end
+
+  class TagUserMismatch < StandardError
   end
 end

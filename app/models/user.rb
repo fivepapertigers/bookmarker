@@ -6,10 +6,13 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   def self.find_or_create_from_auth_hash(auth_hash)
+    return false if auth_hash.empty?
     github_id = auth_hash['uid']
-    user = User.where(github_id: github_id)
-    if user.empty?
-      user = User.new(github_id: github_id, name: auth_hash['name'])
+    users = User.where(github_id: github_id)
+    if users.empty?
+      User.create(github_id: github_id, name: auth_hash['info']['name'])
+    else
+      users.first
     end
   end
 

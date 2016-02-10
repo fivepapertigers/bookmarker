@@ -3,7 +3,7 @@ class Tag < ActiveRecord::Base
   has_and_belongs_to_many :bookmarks, before_add: :ensure_bookmark_user
 
   validates :label, presence: true
-  validates_associated :user
+  validates_presence_of :user
 
   private
 
