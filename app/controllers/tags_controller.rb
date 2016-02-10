@@ -1,19 +1,20 @@
 class TagsController < ApplicationController
-  def index
-  end
 
-  def list
+  before_filter :authenticate_user
+
+  def show
+    @tags = current_user.tags
+    render json: @tags
   end
 
   def create
-    tag = Tag.new()
 
   end
 
   private
 
   def tag_params
-    params.require(:tag).permit(:label)  
+    params.require(:tag).permit(:label)
   end
 
 end

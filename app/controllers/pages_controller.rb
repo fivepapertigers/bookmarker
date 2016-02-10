@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
-  def index
+  def home
+    template = signed_in? ? 'home' : 'sign_in'
+    render template
   end
 end
