@@ -6,4 +6,4 @@ A small web app to keep track of users' bookmarks. You must have a Github accoun
 
 ## Demo
 
-You can find a live demo at [here](http://jgm-bookmarker.herokuapp.com/).
+You can find a live demo [here](http://jgm-bookmarker.herokuapp.com/).
