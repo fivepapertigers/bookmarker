@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   
   
 
-  resource :bookmarks
+  resources :bookmarks
 
-  resource :tags
+  resources :tags
 
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/signout', to: 'sessions#destroy'

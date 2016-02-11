@@ -24,12 +24,33 @@ $jumbotron-padding: 15px;
   text-overflow:ellipsis;
 }
 
-.bookmark-listing>button {
+.bookmark-listing>button.go-to-btn {
   position: absolute;
-  width: 90%;
+  width: 40%;
   bottom: 5px;
   left: 5%;
 }
+
+.bookmark-listing>button.edit-btn {
+  position: absolute;
+  width: 40%;
+  bottom: 5px;
+  left: 50%;
+}
+
+
+.listing-remove {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+  z-index: 1
+}
+
+.listing-remove:hover {
+  color: red;
+}
+
 
 *[data-toggle=modal] {
   cursor: pointer;

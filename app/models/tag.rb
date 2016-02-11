@@ -8,7 +8,7 @@ class Tag < ActiveRecord::Base
   private
 
   def ensure_bookmark_user(bm)
-    raise BookmarkUserMismatch if bm.user_id && bm.user_id != user_id
+    raise BookmarkUserMismatch if user_id && bm.user_id && bm.user_id != user_id
     bm.user_id = user_id
   end
 

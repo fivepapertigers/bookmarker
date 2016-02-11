@@ -9,8 +9,11 @@ class Bookmark < ActiveRecord::Base
   private
 
   def ensure_tag_user(tag)
-    raise TagUserMismatch if tag.user_id && tag.user_id != user_id
-    tag.user_id = user_id
+    if user_id
+      raise TagUserMismatch if tag.user_id && tag.user_id != user_id
+      tag.user_id = user_id
+    end
+    true
   end
 
   class TagUserMismatch < StandardError

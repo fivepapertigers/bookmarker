@@ -3,17 +3,28 @@
     bookmarks: []
     tags: []
     active_tag_id: null
+    remove_tag_mode: false
   componentDidMount: ->
     $.get '/tags/', (data) =>
       @setState tags: data
   tagClicked: (tag_id) ->
     @setState active_tag_id: tag_id
+  tagRemoved: (tag_id) ->
+    for tag,i in @state.tags
+      if tag.id == tag_id
+        tags = @state.tags
+        tags.splice i, 1
+        @setState tags: tags
+        break
   addTag: (tag) ->
     tags = @state.tags.slice()
     tags.push tag
     @setState tags: tags
   showAllTags: (e) ->
     @setState active_tag_id: null
+  removeModeToggle: (e) ->
+    
+    @setState remove_tag_mode: !@state.remove_tag_mode
   render: ->
     tag_modal_id = "add_tag_modal"
     all_active = if @state.active_tag_id then '' else 'active'
@@ -39,6 +50,11 @@
               tag: tag
               active: @state.active_tag_id == tag.id
               tagClickHandler: @tagClicked
+              remove_mode: @state.remove_tag_mode
+              removeTag: @tagRemoved
+        React.DOM.br null, null
+        React.DOM.ul
+          className: 'nav nav-pills tag-pills'
           React.DOM.li
             className: 'add-tag-list-item'
             role: 'presentation'
@@ -50,6 +66,17 @@
                 className: 'fa fa-plus-circle'
               React.DOM.span
                 ' Add New Tag'
+          React.DOM.li
+            className: 'remove-tag-list-item'
+            role: 'presentation'
+            React.DOM.a
+              className: 'text-danger'
+              href: '#'
+              onClick: @removeModeToggle
+              React.DOM.i
+                className: 'fa fa-minus-circle'
+              React.DOM.span null,
+                if @state.remove_tag_mode then ' Cancel' else ' Remove Tags'
       React.DOM.div
         id: tag_modal_id
         className: 'modal fade'
@@ -69,6 +96,6 @@
                 "Add a New Tag"
             React.DOM.div
               className: 'modal-body'
-              React.createElement TagForm, handleNewTag: @addTag, tag_modal_id: tag_modal_id
+              React.createElement TagForm, handleNewTag: @addTag, modal_id: tag_modal_id
       React.DOM.hr null, null
-      React.createElement Bookmarks, active_tag_id: @state.active_tag_id
+      React.createElement Bookmarks, active_tag_id: @state.active_tag_id, tags: @state.tags
