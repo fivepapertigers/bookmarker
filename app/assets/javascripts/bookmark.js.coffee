@@ -17,15 +17,22 @@
         className: 'bookmark'
         @props.bookmark.name
       React.DOM.ul
-        className: 'list-unstyled text-muted'
+        className: 'text-muted fa-ul'
         React.DOM.li null,
+          React.DOM.i
+            className: 'fa-li fa fa-link'
           React.DOM.span
             className: ''
-            "Link: #{@props.bookmark.path}"
+            React.DOM.a
+              href: @props.bookmark.path
+              target: '_blank'
+              @props.bookmark.path
         if @props.bookmark.tags.length > 0
           labels = @props.bookmark.tags.map (t) -> t.label 
           React.DOM.li null,
-            "Tags: #{labels.join(', ')}"
+            React.DOM.i
+              className: 'fa-li fa fa-tag'
+            labels.join(', ')
 
             
       React.DOM.button

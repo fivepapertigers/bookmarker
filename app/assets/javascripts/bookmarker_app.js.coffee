@@ -35,23 +35,24 @@
           "#{@props.current_user.name}'s Bookmarks "
       React.DOM.div
         className: 'text-center'
-        React.DOM.ul
-          className: 'nav nav-pills tag-pills'
-          React.DOM.li
-            className: "add-tag-list-item #{all_active}"
-            role: 'presentation'
-            React.DOM.a
-              href: '#'
-              onClick: @showAllTags
-              'All'
-          for tag in @state.tags
-            React.createElement Tag,
-              key: tag.id
-              tag: tag
-              active: @state.active_tag_id == tag.id
-              tagClickHandler: @tagClicked
-              remove_mode: @state.remove_tag_mode
-              removeTag: @tagRemoved
+        if @state.tags.length > 0
+          React.DOM.ul
+            className: 'nav nav-pills tag-pills'
+            React.DOM.li
+              className: "add-tag-list-item #{all_active}"
+              role: 'presentation'
+              React.DOM.a
+                href: '#'
+                onClick: @showAllTags
+                'All'
+            for tag in @state.tags
+              React.createElement Tag,
+                key: tag.id
+                tag: tag
+                active: @state.active_tag_id == tag.id
+                tagClickHandler: @tagClicked
+                remove_mode: @state.remove_tag_mode
+                removeTag: @tagRemoved
         React.DOM.br null, null
         React.DOM.ul
           className: 'nav nav-pills tag-pills'

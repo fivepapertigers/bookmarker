@@ -8,6 +8,7 @@
     $.get '/bookmarks/', (data) =>
       @setState bookmarks: data
   componentWillReceiveProps: (new_props) ->
+    @componentDidMount()
     @setState active_tag_id: new_props.active_tag_id, tags: new_props.tags
   addBookmark: (bookmark) ->
     bookmarks = @state.bookmarks.slice()

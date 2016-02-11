@@ -12,6 +12,12 @@ class SessionsController < ApplicationController
     redirect_to '/'
   end
 
+  def failure
+    logger.error params[:message]
+    flash[:notice] = params[:message]
+    redirect_to '/'
+  end
+
   protected
 
   def auth_hash

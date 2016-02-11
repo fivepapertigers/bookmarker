@@ -28,7 +28,7 @@
       $('#'+@props.modal_id + ' input:checkbox:checked').each ->
         value = parseInt this.value
         checkbox_values.push value
-      bookmark = name: @state.name, path: @state.path, tag_ids: checkbox_values
+      bookmark = name: @state.name, path: @state.path, tag_ids: checkbox_values#encodeURI(@state.path), tag_ids: checkbox_values
       route = if @props.edit_mode then @route+'/'+@props.bookmark.id else @route
       method = if @props.edit_mode then 'PUT' else 'POST'
       $.ajax route,
