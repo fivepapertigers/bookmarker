@@ -9,17 +9,24 @@ class BookmarksController < ApplicationController
 
   def create
     bookmark = current_user.bookmarks.create(bookmark_params)
-    render json: bookmark, include: :tags
+    if bookmark.valid?
+      flash.now[:success] = "\"#{bookmark.name}\" successfully created!"
+      render json: bookmark, include: :tags
+    else
+      render status: 400
+    end
   end
 
   def update
     bookmark = Bookmark.update(params[:id], {tag_ids: []}.merge(bookmark_params))
+    flash.now[:success] = "\"#{bookmark.name}\" successfully updated!"
     render json: bookmark, include: :tags
   end
 
   def destroy
     bookmark = Bookmark.find(params[:id])
     bookmark.destroy!
+    flash.now[:success] = "\"#{bookmark.name}\" successfully removed."
     render nothing: true, status: 200
   end
 

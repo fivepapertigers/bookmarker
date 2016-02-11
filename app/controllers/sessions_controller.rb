@@ -4,11 +4,13 @@ class SessionsController < ApplicationController
     @user = User.find_or_create_from_auth_hash(auth_hash)
     @user.save! unless @user.id
     self.current_user = @user
+    flash[:notice] = 'Welcome back!'
     redirect_to '/'
   end
 
   def destroy
     self.current_user = nil
+    flash[:notice] = 'See you again soon!'
     redirect_to '/'
   end
 

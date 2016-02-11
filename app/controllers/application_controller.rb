@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_filter :current_user
+  after_filter :flash_to_http_header
   
   private
 
@@ -27,6 +28,14 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user
     redirect_to '/', flash: {error: "You must be logged in!"} unless current_user
+  end
+
+  def flash_to_http_header
+    return unless request.xhr?
+    return if flash.empty?
+    p flash.to_hash
+    response.headers['X-FlashMessages'] = flash.to_hash.to_json
+    flash.discard
   end
 
 end
