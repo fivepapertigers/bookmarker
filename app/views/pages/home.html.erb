@@ -1,3 +1,1 @@
-<div class="page-header text-center bg-white">
-  <h1><%=@current_user.name%>'s Bookmarks</h1>
-</div>
+<%= react_component 'BookmarkerApp', {current_user: @current_user}%>

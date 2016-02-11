@@ -4,3 +4,37 @@ $jumbotron-padding: 15px;
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
+
+
+
+.add-bookmark-listing, .bookmark-listing {
+  height: 200px;
+  overflow: hidden;
+  border: solid 10px white;
+}
+
+.bookmark-listing {
+  background-color: #EEEEEE;
+}
+
+.bookmark-listing h3 {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: inherit;
+  text-overflow:ellipsis;
+}
+
+.bookmark-listing>button {
+  position: absolute;
+  width: 90%;
+  bottom: 5px;
+  left: 5%;
+}
+
+*[data-toggle=modal] {
+  cursor: pointer;
+}
+
+.tag-pills {
+  display: inline-block;
+}

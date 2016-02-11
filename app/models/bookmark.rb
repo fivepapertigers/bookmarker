@@ -3,7 +3,7 @@ class Bookmark < ActiveRecord::Base
   has_and_belongs_to_many :tags, before_add: :ensure_tag_user
 
   validates :name, presence: true
-  validates :path, presence: true
+  validates :path, presence: true, format: /https?:\/\/.+/
   validates_presence_of :user
 
   private

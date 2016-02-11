@@ -8,7 +8,8 @@ class TagsController < ApplicationController
   end
 
   def create
-
+    tag = current_user.tags.create(tag_params)
+    render json: tag
   end
 
   private
