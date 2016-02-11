@@ -35,7 +35,7 @@
     edit_modal_id = "edit_bookmark_modal"
     React.DOM.div
       className: 'row'
-      React.DOM.div
+      React.DOM.button
         className: 'col col-xs-12 bg-primary btn btn-block lead'
         'data-toggle': 'modal'
         'data-target': '#'+add_modal_id

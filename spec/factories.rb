@@ -20,7 +20,7 @@ FactoryGirl.define do
 
 
   factory :bookmark do
-    sequence(:name) { |n| "Test Bookmark  Name #{n}" }
+    sequence(:name) { |n| "Test Bookmark Name #{n}" }
     path "http://github.com/fivepapertigers"
   end
 

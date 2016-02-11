@@ -25,7 +25,7 @@ RSpec.describe Bookmark, type: :model do
     expect(bookmark).not_to be_valid
   end
 
-  context 'with bookmarks' do
+  context 'with tags' do
     before(:each) do
       @bookmark = create(:bookmark, user_id: @user.id)
     end

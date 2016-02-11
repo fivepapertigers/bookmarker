@@ -33,7 +33,6 @@ class ApplicationController < ActionController::Base
   def flash_to_http_header
     return unless request.xhr?
     return if flash.empty?
-    p flash.to_hash
     response.headers['X-FlashMessages'] = flash.to_hash.to_json
     flash.discard
   end
