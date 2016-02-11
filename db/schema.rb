@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160210032234) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name"
@@ -26,8 +29,8 @@ ActiveRecord::Schema.define(version: 20160210032234) do
     t.integer "bookmark_id"
   end
 
-  add_index "bookmarks_tags", ["bookmark_id"], name: "index_bookmarks_tags_on_bookmark_id"
-  add_index "bookmarks_tags", ["tag_id"], name: "index_bookmarks_tags_on_tag_id"
+  add_index "bookmarks_tags", ["bookmark_id"], name: "index_bookmarks_tags_on_bookmark_id", using: :btree
+  add_index "bookmarks_tags", ["tag_id"], name: "index_bookmarks_tags_on_tag_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.integer  "user_id"

@@ -13,7 +13,11 @@ class ApplicationController < ActionController::Base
 
   def current_user
     if id = session[:current_user_id]
-      @current_user = User.find(id)
+      begin
+        @current_user = User.find(id)  
+      rescue ActiveRecord::RecordNotFound => e
+        self.current_user = nil
+      end
     end 
   end
 
