@@ -14,7 +14,7 @@
       if tag.id == tag_id
         tags = @state.tags
         tags.splice i, 1
-        @setState tags: tags
+        @setState tags: tags, active_tag_id: null
         break
   addTag: (tag) ->
     tags = @state.tags.slice()
